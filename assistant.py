@@ -16,6 +16,7 @@ from langchain_community.tools.tavily_search import TavilySearchResults
 
 from config import Config
 
+import json
 
 class TravelAssistant:
     def __init__(self):
@@ -217,3 +218,24 @@ class TravelAssistant:
             }
             sources.append(source)
         return sources
+    
+    def generate_user_summary_json(self) -> Dict:
+        Summary_prompt: """ Here is prompt"""
+        try:
+            chat_history = self.memory.buffer_as_str
+            prompt_text = summary_prompt.format(chat_history = chat_history)
+            rsponse = self.llm.invoke(prompt_text)
+
+            json_start = response.content.find("{")
+            json_end = response.content.rfind("}")+1
+            json_text = response.content[json_start:json_end]
+
+            return json.loads(json_text)
+        
+        except Exception as e:
+            print(f"Error generating JSON")
+            return{"error": str(e)}
+    
+        
+        
+            
