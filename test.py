@@ -32,7 +32,7 @@ for message_data in st.session_state.conversation:
                         st.session_state["user_input"] = suggestion
                         st.rerun()
 
-# Chat input (must be outside layout containers)
+# Chat input
 user_input = st.chat_input("Ask about destinations, packing tips...")
 
 if user_input:
@@ -52,7 +52,7 @@ if user_input:
         "sources": response.get("sources", [])
     })
 
-# Divider and bottom section (side-by-side layout at bottom)
+# Divider and bottom section
 st.divider()
 left_col, _ = st.columns([1, 2])
 
