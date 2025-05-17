@@ -1,5 +1,6 @@
 import streamlit as st
 from assistant import TravelAssistant 
+import json
 
 st.set_page_config(
     page_title="Travel Buddy - AI Travel Assistant",
@@ -9,6 +10,19 @@ st.set_page_config(
 
 st.title("🌍 Travel Buddy")
 st.caption("Your AI-powered travel assistant - ask anything about your destinations")
+#add json summary
+st.divider
+st.subheader("Conversation Summary")
+
+if st.button("JSON Summary"):
+    with st.spinner("Create Json Summary..."):
+        summary_json = st.session_state.assistant.generate_user_summary_json()
+        st.json(summary_json)
+
+        with open("user_chat_summary.json", "w") as f:
+            json.dump(summary_json, f, indent = 2)
+
+        st.success("Saved as user_chat_summary.json")
 
 # Initialize assistant and conversation
 if "assistant" not in st.session_state:
