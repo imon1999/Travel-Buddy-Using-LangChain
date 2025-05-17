@@ -1,5 +1,5 @@
 import streamlit as st
-from assistant import TravelAssistant 
+from assistant import TravelAssistant
 
 st.set_page_config(
     page_title="Travel Buddy - AI Travel Assistant",
@@ -8,7 +8,7 @@ st.set_page_config(
 )
 
 st.title("🌍 Travel Buddy")
-st.caption("Your AI-powered travel assistant - ask anything about your destinations")
+st.caption("Your AI-powered travel assistant")
 
 # Initialize assistant and conversation
 if "assistant" not in st.session_state:
@@ -44,7 +44,7 @@ if user_input:
 
     # Process with TravelAssistant
     with st.chat_message("assistant"):
-        with st.spinner("Planning your perfect trip..."):
+        with st.spinner("Loading..."):
             response = st.session_state.assistant.generate_response(user_input)
         st.markdown(response["response"])
 

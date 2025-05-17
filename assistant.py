@@ -98,7 +98,7 @@ class TravelAssistant:
             Guidelines:
             1. Answer concisely using the context when possible
             2. If unsure, say: "Let me check online for the latest info..."
-            3. For web searches, always include the source link
+            3. For web searches, always include the source link so that user can visit the link
             4. End with one relevant follow-up question
 
             Current query: {question}
@@ -212,7 +212,7 @@ class TravelAssistant:
         for doc in result["source_documents"]:
             source = {
                 "content": doc.page_content[:300] + "..." if len(doc.page_content) > 300 else doc.page_content,
-                "source": os.path.basename(doc.metadata.get("source", "Travel Guide")),
+                "source": os.path.basename(doc.metadata.get("source", "data")),
                 "page": doc.metadata.get("page", "N/A")
             }
             sources.append(source)
