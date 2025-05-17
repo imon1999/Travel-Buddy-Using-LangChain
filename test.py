@@ -1,6 +1,7 @@
 import streamlit as st
 from assistant import TravelAssistant
 import json
+import datetime
 
 st.set_page_config(
     page_title="Travel Buddy - AI Travel Assistant",
@@ -62,11 +63,15 @@ with left_col:
         with st.spinner("Analyzing your travel chat..."):
             summary_json = st.session_state.assistant.generate_user_summary_json()
             st.session_state["last_summary"] = summary_json
+            
+            # Add date time
+            timestamp = datetime.datetime.now().strftime("%Y%M%D_%H%M%S")
+            filename = f"user_chat_summary_{timestamp}.json"
 
-            with open("user_chat_summary.json", "w") as f:
+            with open(filename, "w") as f:
                 json.dump(summary_json, f, indent=2)
 
-            st.success("Saved as user_chat_summary.json")
+            st.success(f"Summary saved as {filename}!")
 
     if "last_summary" in st.session_state:
         st.json(st.session_state["last_summary"])
