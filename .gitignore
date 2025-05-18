@@ -172,3 +172,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+echo "**/__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+git add .gitignore
+git commit -m "Ignore Python cache files"
