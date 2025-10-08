@@ -40,7 +40,7 @@ Travel Buddy is an AI-powered assistant built with **Streamlit** and **LangChain
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/travel-buddy.git
+   git clone https://github.com/imon1999/travel-buddy.git
    cd travel-buddy
 
 2. Install dependencies:
